@@ -27,7 +27,7 @@ const SignOut = () => {
       </View>
 
       <View style = {styles.inputsArea}>
-
+        
         <TextInput style = {styles.input} 
         placeholder="Enter email"/>
         
@@ -35,8 +35,7 @@ const SignOut = () => {
         placeholder="Enter password"/>
         
         <TextInput style = {styles.input}
-        placeholder="Confirm password"/>
-
+        placeholder="Confirm password"/>  
 
       </View>
 
