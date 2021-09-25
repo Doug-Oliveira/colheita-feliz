@@ -1,10 +1,14 @@
 import React from "react";
+import { useNavigation } from "@react-navigation/native";
 import { View, Text, Image, KeyboardAvoidingView, TouchableOpacity, ScrollView, SafeAreaView, Platform} from "react-native";
 import { TextInput} from 'react-native-paper';
 import logo_home from '../../assets/logo-home.png';
 import {styles} from './styles';
 
 export function SignIn(){
+
+  const navigation = useNavigation();
+  
   return(
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height" } enabled>
@@ -33,7 +37,7 @@ export function SignIn(){
           </Text>
         </TouchableOpacity>
         <Text style={styles.have_an_account}>
-          Don’t have an account? <Text style={styles.sign_up}>Sign Up</Text>
+          Don’t have an account? <Text style={styles.sign_up} onPress={() => navigation.navigate('SignOut')}>Sign Up</Text>
         </Text>
         </ScrollView> 
       </KeyboardAvoidingView>
