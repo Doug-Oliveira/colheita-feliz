@@ -1,9 +1,13 @@
 import React from 'react';
 import { Text, View ,TextInput, Pressable,StatusBar,Image } from 'react-native';
+import { useNavigation } from "@react-navigation/native";
 import styles from './styles';
 import smartFarm from '../../assets/smart-farm.png'
 
 export function SignOut(){
+
+  const navigation = useNavigation();
+
   return (
       <View style = {styles.container} >
         <StatusBar
@@ -27,9 +31,8 @@ export function SignOut(){
         <Pressable style= {styles.button} >
             <Text style = {styles.textFooter}>Sign Up</Text>
         </Pressable>
-        <Text >Already have an account? Sign In</Text>
         <Text style={styles.have_an_account}>
-          Don’t have an account? <Text style={styles.sign_up} onPress={() => navigation.navigate('SignOut')}>Sign Up</Text>
+          Already have an account? <Text style={styles.sign_up} onPress={() => navigation.navigate('SignIn')}>Sign In</Text>
         </Text>
       </View>
     </View>
