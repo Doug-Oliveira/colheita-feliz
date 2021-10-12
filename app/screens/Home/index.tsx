@@ -5,7 +5,6 @@ import plant_card from '../../assets/planta.png';
 import {styles} from './styles';
 import { Card } from "react-native-paper";
 
-
 export function Home(){
     
   return(
