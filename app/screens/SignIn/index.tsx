@@ -9,12 +9,12 @@ import firebase from "../../config/firebase";
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 export function SignIn(){
-
+{/*
   const navigation = useNavigation();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errorLogin, setErrorLogin] = useState("");
-
+ 
   const loginFirebase = ()=>{
     firebase.auth().signInWithEmailAndPassword(email, password)
     .then((userCredential) => {
@@ -31,7 +31,7 @@ export function SignIn(){
   useEffect(()=>{
 
   }, []);
-
+*/}
   return(
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height" } enabled>
@@ -47,7 +47,7 @@ export function SignIn(){
         mode="flat"
         label="Email"
         onChangeText={(text) => setEmail(text)}
-        value={email}
+        value={email} 
         />
         <TextInput style={styles.input_password}
         secureTextEntry={true}
