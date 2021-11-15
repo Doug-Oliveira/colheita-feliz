@@ -1,9 +1,10 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
 import { SignIn } from '../screens/SignIn';
 import { SignOut } from '../screens/Signout'; 
-import { Home } from '../screens/Home';
+import  Home  from '../screens/Home';
+import {firebase} from "../../config/firebase";
 
 const { Navigator, Screen } = createStackNavigator();
 

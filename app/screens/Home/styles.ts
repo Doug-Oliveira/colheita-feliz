@@ -8,7 +8,7 @@ export const styles = StyleSheet.create({
     position: 'relative',
     width:'100%',
     height:'40%',
-    backgroundColor: '#55e6c9',
+    backgroundColor: '#D3E4CD',
   },
 
   information:{
@@ -32,7 +32,7 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     fontSize: 20,
     marginTop: 40,
-    backgroundColor: "#fa9d23",
+    backgroundColor: "#99A799",
     width: 350,
     height: 68,
     padding:20,
@@ -73,10 +73,24 @@ export const styles = StyleSheet.create({
     marginTop: 70,
     marginBottom: 10,
     borderRadius: 10,
-    backgroundColor: '#f0f0f0',
+    backgroundColor: '#FEF5ED',
     shadowOffset: { width: 2, height: 2 },
     shadowColor: '#8c8c8c',
     shadowRadius: 10,
+  },
+
+  plantation_card_toggle:{
+    alignSelf: "center",
+    width: 170,
+    height: 60,
+    marginTop: 90,
+    marginBottom: 10,
+    borderRadius: 10,
+    backgroundColor: '#FEF5ED',
+    shadowOffset: { width: 2, height: 2 },
+    shadowColor: '#8c8c8c',
+    shadowRadius: 10,
+    flexDirection: 'row'
   },
 
   image:{
@@ -85,14 +99,26 @@ export const styles = StyleSheet.create({
     marginLeft: 18,
     top: 60
   },
+  switch:{
+    marginLeft: 20,
+    marginTop: 21,
+  },
+
+  ia_text: {
+    marginTop: 20,
+    marginLeft: 20,
+    fontSize: 17,
+    color: "#b0b0b0",
+    fontWeight: "bold"
+  },
 
   btn:{
     alignSelf: "center",
-    marginTop: 80,
+    marginTop: 140,
     width: 350,
     height: 69,
     borderRadius: 4,
-    backgroundColor: theme.colors.primary,
+    backgroundColor: "#99A799",
     justifyContent: 'center',
     alignItems: 'center'
   },

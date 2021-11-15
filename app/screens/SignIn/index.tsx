@@ -5,7 +5,7 @@ import { TextInput} from 'react-native-paper';
 import logo_home from '../../assets/logo-home.png';
 import {styles} from './styles';
 
-import firebase from "../../config/firebase";
+import {firebase} from "../../config/firebase";
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 export function SignIn(){
@@ -32,6 +32,19 @@ export function SignIn(){
 
   }, []);
 */}
+
+  const SignInFirebase = () => {
+    var google_provider = new firebase.auth.GoogleAuthProvider();
+    firebase.auth().signInWithPopup(google_provider)
+    .then((re) =>{
+      console.log(re);
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+
+  }
+
   return(
     <SafeAreaView style={styles.container}>
       <KeyboardAvoidingView behavior={Platform.OS == "ios" ? "padding" : "height" } enabled>
@@ -46,18 +59,15 @@ export function SignIn(){
         <TextInput style={styles.input_email}
         mode="flat"
         label="Email"
-        onChangeText={(text) => setEmail(text)}
-        value={email} 
+
         />
         <TextInput style={styles.input_password}
         secureTextEntry={true}
         mode="flat"
         label="Password"
-        onChangeText={(text) => setPassword(text)}
-        value={password}
+
         />
-        {errorLogin === true 
-        ?
+
         <View style={styles.contentAlert}>
           <MaterialCommunityIcons
             name="alert-circle"
@@ -66,33 +76,22 @@ export function SignIn(){
           />
           <Text style={styles.warningAlert}>Invalid e-mail or password</Text>
         </View>
-        :
+
         <View/>
-        }
+
         <Text style={styles.forgot_password}>
           Forgot your password?
         </Text>
-        { email === "" || password === ""
-        ?
         <TouchableOpacity 
         style={styles.btn_login} 
         activeOpacity={0.7}
-        disabled={true}
+        onPress={SignInFirebase}
         >
           <Text style={styles.text_btn_login}>
             Login
           </Text>
         </TouchableOpacity>
-        :
-        <TouchableOpacity 
-        style={styles.btn_login} 
-        activeOpacity={0.7}
-        >
-          <Text style={styles.text_btn_login}>
-            Login
-          </Text>
-        </TouchableOpacity>
-        }
+
         <Text style={styles.have_an_account}>
           Don’t have an account? <Text style={styles.sign_up} onPress={() => navigation.navigate('SignOut')}>Sign Up</Text>
         </Text>
