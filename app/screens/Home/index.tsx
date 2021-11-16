@@ -29,7 +29,7 @@ export default class Home extends Component{
   
   async sendRequest() :Promise <JSON> {
     
-    const response = await fetch('http://localhost:3213/platation/get-plantation', {
+    const response = await fetch('http://192.168.0.58:3213/platation/get-plantation', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
