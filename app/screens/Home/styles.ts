@@ -34,6 +34,7 @@ export const styles = StyleSheet.create({
     marginTop: 40,
     backgroundColor: "#99A799",
     width: 350,
+    marginLeft: 10,
     height: 68,
     padding:20,
     textAlign: "center",
@@ -52,6 +53,16 @@ export const styles = StyleSheet.create({
     fontWeight: "bold",
     
   },
+  plantation_title_content:{
+    flexDirection: 'row',
+    fontSize: 20,
+    color: "#ffffff",
+    fontWeight: "bold"
+  },
+
+  checked:{
+    backgroundColor:"black"
+  },
 
   last_irrigation:{
     marginLeft: 140,
@@ -64,6 +75,7 @@ export const styles = StyleSheet.create({
 
   font_styled:{
     color: "#82de26",
+    fontWeights: "600"
   },
 
   plantation_card:{
@@ -99,9 +111,9 @@ export const styles = StyleSheet.create({
     marginLeft: 18,
     top: 60
   },
-  switch:{
-    marginLeft: 20,
-    marginTop: 21,
+  icon: {
+    marginLeft: 90,
+    marginTop: -5,
   },
 
   ia_text: {

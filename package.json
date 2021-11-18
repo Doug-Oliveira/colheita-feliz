@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@material-ui/core": "^4.12.3",
+    "@react-native-community/checkbox": "^0.5.9",
     "@react-native-firebase/app": "^12.8.0",
     "@react-navigation/native": "^6.0.2",
     "@react-navigation/native-stack": "^6.1.0",
@@ -20,7 +21,7 @@
     "react-dom": "16.13.1",
     "react-native": "https://github.com/expo/react-native/archive/sdk-42.0.0.tar.gz",
     "react-native-gesture-handler": "~1.10.2",
-    "react-native-paper": "^4.9.2",
+    "react-native-paper": "^4.10.1",
     "react-native-safe-area-context": "3.2.0",
     "react-native-screens": "~3.4.0",
     "react-native-web": "~0.13.12"
