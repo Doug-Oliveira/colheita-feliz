@@ -3,7 +3,7 @@ import { useNavigation } from "@react-navigation/native";
 import { View, Text, Image, KeyboardAvoidingView, TouchableOpacity, ScrollView, SafeAreaView, Platform} from "react-native";
 import plant_card from '../../assets/planta.png';
 import {styles} from './styles';
-import { Checkbox, Colors } from "react-native-paper";
+import { Checkbox, Colors, Modal, Portal, Provider, Button, TextInput } from "react-native-paper";
 import { Component } from "react"; 
 
 import { MaterialCommunityIcons } from "@expo/vector-icons"
@@ -19,7 +19,9 @@ export default class Home extends Component{
       checked: false
     }
     this.state = {
+      visible: false,
       checked: false,
+      text_input: "",
         teste: {PlantingSituation:{
           "namePlantation": "---",
           "typeOfIrrigation": "----",
@@ -32,7 +34,7 @@ export default class Home extends Component{
   }
 
   
-  //Manual Irrigation Request
+  //Refresh Irrigation Request
   async sendRequest() :Promise <JSON> {
     
     const response = await fetch('http://localhost:3213/platation/get-plantation', {
@@ -55,10 +57,11 @@ export default class Home extends Component{
   }
 
   checked = false;
+  visible = false;
   //request that sends information to enable automatic irrigation
   async sendIrrigationCheckMark(opt: String) :Promise <JSON> {
     
-    const response = await fetch('http://192.168.0.58:3213/platation/toggle-typeIrrigation', {
+    const response = await fetch('http://localhost:3213/platation/toggle-typeIrrigation', {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -78,10 +81,33 @@ export default class Home extends Component{
       })
       .catch(error => console.log(error.message))
   }
+
+  //Manual irrigation
+  async sendManualIrrigationRequest(percentage: String) :Promise <JSON> {
+    
+    const response = await fetch('http://localhost:3213/platation/activate-irrigation', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        irrigationPercentage: percentage,
+      })
+    })
+      .then(async res => {
+        return res.json()
+      })
+      .then(data => {
+        this.setState({teste: data})
+        console.log(this.state.teste)
+        
+      })
+      .catch(error => console.log(error.message))
+  }
+
     //Capture event button irrigation
     async funcao() :Promise <JSON>{
       const response = await this.sendRequest()
-
     }
 
     //Capture Checkbox params
@@ -89,9 +115,8 @@ export default class Home extends Component{
       opt = opt ? "Manual" : "IA"
       await this.sendIrrigationCheckMark(opt)
       console.log(opt)
-    }
+    }  
 
-  
   render(){
     return(
       <SafeAreaView style={styles.container}>
@@ -134,12 +159,44 @@ export default class Home extends Component{
                   </Text>
                 </View>
               </View>
-              <TouchableOpacity style={styles.btn} activeOpacity={0.7} 
-                onPress={ () => this.funcao()}> 
-                <Text style={styles.text_btn}>
-                  Irrigar
-                </Text>
-            </TouchableOpacity>
+              <Provider>
+                <Portal>
+                  <Modal 
+                    visible={this.state.visible} 
+                    onDismiss={() =>{
+                    this.setState({visible: this.state.visible})
+                    }} 
+                    contentContainerStyle={styles.modal}>
+                    <Text style={styles.modal_text}>Seleciona a umidade desejada.</Text>
+                    <TextInput
+                      onChangeText={(text)=> {
+                        this.setState({text_input: text})
+                        const aux_params = this.state.text_input / 10
+                        console.log(aux_params)
+                      }}
+                      mode="flat"
+                      label="Nivel de umidade"
+                    />
+                    <TouchableOpacity style={styles.modal_btn} activeOpacity={0.7} 
+                      onPress={ () =>{
+                        console.log((this.state.text_input = this.state.text_input / 100).toFixed(2))
+                        this.sendManualIrrigationRequest(this.state.text_input)
+                      }}>
+                      <Text style={styles.modal_text_btn}>
+                        Ok
+                      </Text>
+                    </TouchableOpacity>
+                  </Modal>
+                </Portal>
+                <TouchableOpacity style={styles.btn} activeOpacity={0.7} 
+                  onPress={ () =>{
+                    this.setState({visible: !this.state.visible})
+                  } }> 
+                  <Text style={styles.text_btn}>
+                    Irrigar
+                  </Text>
+                </TouchableOpacity>
+              </Provider>
             </View>
         </KeyboardAvoidingView>
       </SafeAreaView>

@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
   container:{
     position: 'relative',
     width:'100%',
-    height:'40%',
+    height:'65%',
     backgroundColor: '#D3E4CD',
   },
 
@@ -73,6 +73,14 @@ export const styles = StyleSheet.create({
   
   },
 
+  modal_text:{
+    fontSize: 16,
+    marginBottom: 20,
+    color: "#b0b0b0",
+    fontWeight: "bold"
+  
+  },
+
   font_styled:{
     color: "#82de26",
     fontWeights: "600"
@@ -124,6 +132,16 @@ export const styles = StyleSheet.create({
     fontWeight: "bold"
   },
 
+  modal:{
+    alignSelf: "center",
+    borderRadius: 10,
+    backgroundColor: 'white',
+    padding: 20,
+    width: 400,
+    height: 300,
+    
+  },
+
   btn:{
     alignSelf: "center",
     marginTop: 140,
@@ -133,6 +151,22 @@ export const styles = StyleSheet.create({
     backgroundColor: "#99A799",
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  modal_btn:{
+    alignSelf: "center",
+    width: 100,
+    height: 50,
+    marginTop: 10,
+    borderRadius: 4,
+    backgroundColor: "#99A799",
+    justifyContent: 'center',
+    alignItems: 'center'
+  },
+
+  modal_text_btn:{
+    fontSize: 17,
+    color: theme.colors.font_light,
+    fontWeight: "bold"
   },
 
   text_btn:{
