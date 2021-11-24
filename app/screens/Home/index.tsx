@@ -24,7 +24,7 @@ export default class Home extends Component{
       visible: false,
       checked: false,
       text_input: "",
-        teste: {PlantingSituation:{
+        teste: {plantingSituation:{          
           "namePlantation": "---",
           "typeOfIrrigation": "----",
           "PlantingSituation_typeOfIrrigation": "---",
@@ -41,13 +41,14 @@ export default class Home extends Component{
     
     const response = await fetch('http://localhost:3213/plantation/get-humidity', {
       method: 'GET'
+
     })
       .then(async res => {
         return res.json()
       })
       .then(data => {
         this.setState({teste: data})
-        console.log(this.state.teste)
+        console.log(this.state.teste.plantingSituation.namePlantation)
         
       })
       .catch(error => console.log(error.message))
@@ -58,8 +59,8 @@ export default class Home extends Component{
   //request that sends information to enable automatic irrigation
   async sendIrrigationCheckMark(opt: String) :Promise <JSON> {
     
-    const response = await fetch('http://localhost:3213/platation/toggle-typeIrrigation', {
-      method: 'GET',
+    const response = await fetch('http://192.168.0.39:3213/platation/toggle-typeIrrigation', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         'id': 'e2a06b96-5c1b-486c-8e1e-f500d537c0d6'
@@ -73,7 +74,7 @@ export default class Home extends Component{
       })
       .then(data => {
         this.setState({teste: data})
-        console.log(this.state.teste)
+        console.log(this.state.teste.plantingSituation.PlantingSituation_IrrigationDate)
         
       })
       .catch(error => console.log(error.message))
@@ -82,13 +83,14 @@ export default class Home extends Component{
   //Manual irrigation
   async sendManualIrrigationRequest(percentage: String) :Promise <JSON> {
     
-    const response = await fetch('http://localhost:3213/platation/activate-irrigation', {
-      method: 'GET',
+    const response = await fetch('http://192.168.0.39:3213/platation/activate-irrigation', {
+      method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-      },
+      }
+      ,
       body: JSON.stringify({
-        irrigationPercentage: percentage,
+        "porcentagem": percentage,
       })
     })
       .then(async res => {
@@ -123,7 +125,7 @@ export default class Home extends Component{
                 Sr. Jorge
               </Text>
               <View style={styles.plantation_title}>
-                <Text style={styles.plantation_title_content}>Umidade em: {this.state.teste.PlantingSituation.PlantingSituation_moisture}%</Text>
+                <Text style={styles.plantation_title_content}>Umidade em: {this.state.teste.plantingSituation.PlantingSituation_moisture}%</Text>
                 <MaterialCommunityIcons 
                   style={styles.icon}
                   name="refresh-circle" 
@@ -135,9 +137,9 @@ export default class Home extends Component{
                 <Image source={plant_card} 
                 style={styles.image}
                 resizeMode="stretch"/>
-                <Text style={styles.plantation_information}>{this.state.teste.PlantingSituation.namePlantation}</Text>
-                <Text style={styles.last_irrigation}>Última irrigação: <Text style={styles.font_styled}>{this.state.teste.PlantingSituation.PlantingSituation_IrrigationDate}</Text></Text>
-                <Text style={styles.last_irrigation}>Tipo: <Text style={styles.font_styled}>{this.state.teste.PlantingSituation.PlantingSituation_typeOfIrrigation}</Text></Text>
+                <Text style={styles.plantation_information}>{this.state.teste.plantingSituation.namePlantation}</Text>
+                <Text style={styles.last_irrigation}>Última irrigação: <Text style={styles.font_styled}>{this.state.teste.plantingSituation.PlantingSituation_IrrigationDate}</Text></Text>
+                <Text style={styles.last_irrigation}>Tipo: <Text style={styles.font_styled}>{this.state.teste.plantingSituation.typeOfIrrigation}</Text></Text>
                 <View style={styles.plantation_card_toggle}>
                   <Text style={styles.ia_text}>Ativar IA
                   <Checkbox
