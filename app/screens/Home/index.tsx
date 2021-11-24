@@ -37,7 +37,7 @@ export default class Home extends Component{
   //Refresh Irrigation Request
   async sendRequest() :Promise <JSON> {
     
-    const response = await fetch('http://192.168.0.39:3213/platation/get-plantation', {
+    const response = await fetch('http://192.168.0.45:3213/platation/get-plantation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -60,7 +60,7 @@ export default class Home extends Component{
   //request that sends information to enable automatic irrigation
   async sendIrrigationCheckMark(opt: String) :Promise <JSON> {
     
-    const response = await fetch('http://192.168.0.39:3213/platation/toggle-typeIrrigation', {
+    const response = await fetch('http://192.168.0.45:3213/platation/toggle-typeIrrigation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -84,7 +84,7 @@ export default class Home extends Component{
   //Manual irrigation
   async sendManualIrrigationRequest(percentage: String) :Promise <JSON> {
     
-    const response = await fetch('http://192.168.0.39:3213/platation/activate-irrigation', {
+    const response = await fetch('http://192.168.0.45:3213/platation/activate-irrigation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -142,7 +142,7 @@ export default class Home extends Component{
                 <Text style={styles.last_irrigation}>Última irrigação: <Text style={styles.font_styled}>{this.state.teste.plantingSituation.PlantingSituation_IrrigationDate}</Text></Text>
                 <Text style={styles.last_irrigation}>Tipo: <Text style={styles.font_styled}>{this.state.teste.plantingSituation.typeOfIrrigation}</Text></Text>
                 <View style={styles.plantation_card_toggle}>
-                  <Text style={styles.ia_text}>Ativar IA
+                  <Text style={styles.ia_text}>Ativar Automação
                   <Checkbox
                     checked={this.state.checked}
                     style={styles.checked}

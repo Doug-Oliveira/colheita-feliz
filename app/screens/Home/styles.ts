@@ -101,7 +101,7 @@ export const styles = StyleSheet.create({
 
   plantation_card_toggle:{
     alignSelf: "center",
-    width: 170,
+    width: 230,
     height: 60,
     marginTop: 90,
     marginBottom: 10,
@@ -125,8 +125,9 @@ export const styles = StyleSheet.create({
   },
 
   ia_text: {
-    marginTop: 20,
-    marginLeft: 20,
+    marginTop: 10,
+    marginLeft: 30,
+    marginBottom: 40,
     fontSize: 17,
     color: "#b0b0b0",
     fontWeight: "bold"
