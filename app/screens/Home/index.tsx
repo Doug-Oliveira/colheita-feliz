@@ -6,6 +6,8 @@ import {styles} from './styles';
 import { Checkbox, Colors, Modal, Portal, Provider, Button, TextInput } from "react-native-paper";
 import { Component } from "react"; 
 
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
@@ -37,13 +39,8 @@ export default class Home extends Component{
   //Refresh Irrigation Request
   async sendRequest() :Promise <JSON> {
     
-    const response = await fetch('http://localhost:3213/platation/get-plantation', {
-      method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        'id': '2adacf76-d5b2-4673-9c2d-ea813f5a33b2'
- 
-      }
+    const response = await fetch('http://localhost:3213/plantation/get-humidity', {
+      method: 'GET'
     })
       .then(async res => {
         return res.json()
@@ -161,6 +158,7 @@ export default class Home extends Component{
               </View>
               <Provider>
                 <Portal>
+                  <FlashMessage position="top" />
                   <Modal 
                     visible={this.state.visible} 
                     onDismiss={() =>{
@@ -181,6 +179,12 @@ export default class Home extends Component{
                       onPress={ () =>{
                         console.log((this.state.text_input = this.state.text_input / 100).toFixed(2))
                         this.sendManualIrrigationRequest(this.state.text_input)
+                        showMessage({
+                          message: "Irrigado com Sucesso",
+                          type: "success",
+                          animationDuration: 600,
+                          icon: "auto",
+                        });
                       }}>
                       <Text style={styles.modal_text_btn}>
                         Ok
