@@ -6,6 +6,8 @@ import {styles} from './styles';
 import { Checkbox, Colors, Modal, Portal, Provider, Button, TextInput } from "react-native-paper";
 import { Component } from "react"; 
 
+import FlashMessage, { showMessage, hideMessage } from "react-native-flash-message";
+
 import { MaterialCommunityIcons } from "@expo/vector-icons"
 
 
@@ -37,12 +39,9 @@ export default class Home extends Component{
   //Refresh Irrigation Request
   async sendRequest() :Promise <JSON> {
     
-    const response = await fetch('http://192.168.0.45:3213/platation/get-plantation', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'id': 'e2a06b96-5c1b-486c-8e1e-f500d537c0d6',
-      }
+    const response = await fetch('http://http://192.168.0.45:3213/plantation/get-humidity', {
+      method: 'GET'
+
     })
       .then(async res => {
         return res.json()
@@ -150,7 +149,7 @@ export default class Home extends Component{
                     uncheckedColor="#99A799"
                     status={this.state.checked ? 'checked' : 'unchecked'}
                     onPress={() => { 
-                      //this.setState({this.state.checked = !this.state.checked})
+                      this.setState({this.state.checked = !this.state.checked})
                         this.setState({checked: !this.state.checked})
                         this.changeChebox(this.state.checked)
                       }
@@ -161,6 +160,7 @@ export default class Home extends Component{
               </View>
               <Provider>
                 <Portal>
+                  <FlashMessage position="top" />
                   <Modal 
                     visible={this.state.visible} 
                     onDismiss={() =>{
@@ -181,6 +181,12 @@ export default class Home extends Component{
                       onPress={ () =>{
                         console.log((this.state.text_input = this.state.text_input / 100).toFixed(2))
                         this.sendManualIrrigationRequest(this.state.text_input)
+                        showMessage({
+                          message: "Irrigado com Sucesso",
+                          type: "success",
+                          animationDuration: 600,
+                          icon: "auto",
+                        });
                       }}>
                       <Text style={styles.modal_text_btn}>
                         Ok
