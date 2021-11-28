@@ -4,7 +4,7 @@ Para baixar as dependencias
 yarn install
 yarn install --global expo-cli
 ```
-or 
+ou
 ```bash
 npm install
 npm install --global expo-cli
