@@ -9,3 +9,7 @@ or
 npm install
 npm install --global expo-cli
 ```
+Para executar o projeto
+```bash
+expo start
+```
