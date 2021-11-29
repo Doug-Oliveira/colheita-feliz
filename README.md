@@ -3,7 +3,7 @@
 ![Github Badge](https://img.shields.io/badge/yarn-V1.22.5-blue?style=for-the-badge&logo=yarn)
 # Welcome to Harry Farm
 ## What's Happy Farm
-Harry farm is a mobile application to control and monitor soil humidity in family plantations, the application was developed to compare the project to the Computer Science Course at Univerdade Paulista - UNIP
+Harry farm is a mobile application to control and monitor soil humidity in family plantations, the application was developed to compare the project to the Computer Science Course at Univercidade Paulista - UNIP
 ## Getting Started
 ```bash
 yarn install
