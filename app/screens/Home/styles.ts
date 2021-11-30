@@ -33,8 +33,9 @@ export const styles = StyleSheet.create({
     fontSize: 20,
     marginTop: 40,
     backgroundColor: "#99A799",
-    width: 350,
+    width: 380,
     marginLeft: 10,
+    marginRight: 10,
     height: 68,
     padding:20,
     textAlign: "center",
@@ -120,8 +121,8 @@ export const styles = StyleSheet.create({
     top: 60
   },
   icon: {
-    marginLeft: 90,
-    marginTop: -5,
+    marginLeft: 110,
+    marginTop: -5
   },
 
   ia_text: {

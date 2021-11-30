@@ -45,7 +45,7 @@ export default class Home extends Component{
   //Refresh Irrigation Request
   async sendRequest() :Promise <JSON> {
     
-    const response = await fetch('http://localhost:3213/platation/get-plantation', {
+    const response = await fetch('http://192.168.0.45:3213/platation/get-plantation', {
       method: 'POST',
       headers: {
         "Content-type": "application/json",
@@ -71,7 +71,7 @@ export default class Home extends Component{
   //request that sends information to enable automatic irrigation
   async sendIrrigationCheckMark(opt: String) :Promise <JSON> {
     
-    const response = await fetch('http://localhost:3213/platation/toggle-typeIrrigation', {
+    const response = await fetch('http://192.168.0.45:3213/platation/toggle-typeIrrigation', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -89,7 +89,7 @@ export default class Home extends Component{
         console.log(this.state.teste.plantingSituation.PlantingSituation_IrrigationDate)
         
       })
-      .catch(error => console.log(error.message))
+      .catch(error => console.log())
   }
 
   //Manual irrigation
@@ -155,7 +155,7 @@ export default class Home extends Component{
                 Sr. Jorge
               </Text>
               <View style={styles.plantation_title}>
-                <Text style={styles.plantation_title_content}>Umidade em: {parseFloat(this.state.teste.plantingSituation.PlantingSituation_moisture).toFixed(0)}%</Text>
+                <Text style={styles.plantation_title_content}>Umidade em: {(parseFloat(this.state.teste.plantingSituation.PlantingSituation_moisture) * 100).toFixed(0)}%</Text>
                 <MaterialCommunityIcons 
                   style={styles.icon}
                   name="refresh-circle" 
@@ -180,7 +180,6 @@ export default class Home extends Component{
                     status={this.state.checked == 'IA' ? 'checked' : 'unchecked'}
                     onPress={() => { 
 
-                      console.log(this.state.checked)
                       if(this.state.teste.plantingSituation.typeOfIrrigation == 'Manual') this.setState({checked: 'IA'})
                       else this.setState({checked: 'Manual'})
 
